@@ -2,6 +2,7 @@ require "blurb/account"
 require "blurb/campaign_requests"
 require "blurb/snapshot_requests"
 require "blurb/report_requests"
+require "blurb/report_requests_v3"
 require "blurb/request_collection"
 require "blurb/request_collection_with_campaign_type"
 require "blurb/suggested_keyword_requests"
@@ -92,6 +93,10 @@ class Blurb
         base_url: @account.api_url,
         campaign_type: :hsa
       )
+      @v3_reports = ReportRequestsV3.new(
+        headers: headers_hash,
+        base_url: @account.api_url
+      )
       @ad_groups = RequestCollection.new(
         headers: headers_hash,
         base_url: "#{@account.api_url}/v2/sp/adGroups"
@@ -172,6 +177,10 @@ class Blurb
       return @sp_reports if campaign_type == :sp
       return @sb_reports if campaign_type == :sb || campaign_type == :hsa
       return @sd_reports if campaign_type == :sd
+    end
+
+    def reports_v3
+      @v3_reports
     end
 
     def request(api_path: "",request_type: :get, payload: nil, url_params: nil, headers: headers_hash)
