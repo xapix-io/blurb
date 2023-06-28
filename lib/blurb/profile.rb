@@ -8,6 +8,7 @@ require "blurb/request_collection_with_campaign_type"
 require "blurb/suggested_keyword_requests"
 require "blurb/history_request"
 require "blurb/invoice_request"
+require "blurb/sp_requests"
 
 class Blurb
   class Profile < BaseClass
