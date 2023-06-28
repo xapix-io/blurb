@@ -97,6 +97,10 @@ class Blurb
         headers: headers_hash,
         base_url: @account.api_url
       )
+      @v3_sp = SpRequests.new(
+        headers: headers_hash,
+        base_url: @account.api_url
+      )
       @ad_groups = RequestCollection.new(
         headers: headers_hash,
         base_url: "#{@account.api_url}/v2/sp/adGroups"
@@ -181,6 +185,10 @@ class Blurb
 
     def reports_v3
       @v3_reports
+    end
+
+    def sp_v3
+      @v3_sp
     end
 
     def request(api_path: "",request_type: :get, payload: nil, url_params: nil, headers: headers_hash)
