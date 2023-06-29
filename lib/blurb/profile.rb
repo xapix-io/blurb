@@ -100,7 +100,7 @@ class Blurb
       )
       @v3_sp = SpRequests.new(
         headers: headers_hash,
-        base_url: @account.api_url
+        base_url: "#{@account.api_url}/sp"
       )
       @ad_groups = RequestCollection.new(
         headers: headers_hash,
