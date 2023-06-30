@@ -5,12 +5,12 @@ require 'blurb/request_collection'
 class Blurb
   # Adapter for ADS SP v3 report requests
   class SpRequests < RequestCollection
-    def post(endpoint, payload, headers)
+    def post(endpoint, payload, additional_headers)
       execute_request(
         api_path: endpoint,
         request_type: :post,
         payload: payload,
-        headers: headers
+        headers: @headers.merge(additional_headers)
       )
     end
   end
