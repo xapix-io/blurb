@@ -10,8 +10,8 @@ class Blurb
       execute_request(
         api_path: '/targets/keywords/recommendations',
         request_type: :post,
-        payload: payload,
-        headers: headers
+        headers: headers,
+        payload: payload
       )
     end
   end
