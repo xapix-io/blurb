@@ -5,12 +5,13 @@ require 'blurb/request_collection'
 class Blurb
   # Adapter for ADS SP v3 report requests
   class SpRequests < RequestCollection
-    def post(endpoint, payload, additional_headers)
+    def targets_keywords_recommendations(payload)
+      headers = @headers.merge('Content-Type' => 'application/vnd.spkeywordsrecommendation.v3+json')
       execute_request(
-        api_path: endpoint,
+        api_path: '/targets/keywords/recommendations',
         request_type: :post,
         payload: payload,
-        headers: @headers.merge(additional_headers)
+        headers: headers
       )
     end
   end
