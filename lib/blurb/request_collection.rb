@@ -70,7 +70,7 @@ class Blurb
 
     private
 
-      def execute_request(api_path: "", request_type:, payload: nil, url_params: nil)
+      def execute_request(api_path: "", request_type:, payload: nil, url_params: nil, headers: @headers)
         url = "#{@base_url}#{api_path}"
         url.sub!('/sd/', '/') if request_type == :get && url.include?('sd/reports') && url_params.nil?
 
@@ -79,7 +79,7 @@ class Blurb
           url_params: url_params,
           request_type: request_type,
           payload: payload,
-          headers: @headers
+          headers: headers
         )
 
         request.make_request
