@@ -49,8 +49,8 @@ class Blurb
       @profiles.find{ |p| p.profile_id == profile_id }
     end
 
-    def profile_list
-      profile_request("/v2/profiles")
+    def profile_list(profile_type: nil)
+      profile_request("/v2/profiles", { profile_type_filter: profile_type }.compact)
     end
 
     def retrieve_profile(profile_id)
@@ -83,9 +83,10 @@ class Blurb
 
     private
 
-      def profile_request(api_path)
+      def profile_request(api_path, url_params = nil)
         request = Request.new(
           url: "#{@api_url}#{api_path}",
+          url_params: url_params,
           request_type: :get,
           headers: {
             "Authorization" => "Bearer #{retrieve_token()}",
