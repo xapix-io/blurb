@@ -1,5 +1,6 @@
 require "blurb/account"
 require "blurb/campaign_requests"
+require "blurb/campaign_requests_v4"
 require "blurb/snapshot_requests"
 require "blurb/report_requests"
 require "blurb/report_requests_v3"
@@ -39,6 +40,13 @@ class Blurb
         campaign_type: CAMPAIGN_TYPE_CODES[:sp]
       )
       @sb_campaigns = CampaignRequests.new(
+        headers: headers_hash,
+        base_url: @account.api_url,
+        resource: "campaigns",
+        campaign_type: CAMPAIGN_TYPE_CODES[:sb],
+        bulk_api_limit: 10
+      )
+      @sb_campaigns_v4 = CampaignRequestsV4.new(
         headers: headers_hash,
         base_url: @account.api_url,
         resource: "campaigns",
@@ -160,6 +168,10 @@ class Blurb
       return @sp_campaigns if campaign_type == :sp
       return @sb_campaigns if campaign_type == :sb || campaign_type == :hsa
       return @sd_campaigns if campaign_type == :sd
+    end
+
+    def campaigns_sb_v4
+      @sb_campaigns_v4
     end
 
     def keywords(campaign_type)
