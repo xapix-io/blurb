@@ -11,7 +11,8 @@ class Blurb
       execute_request(
         api_path: '/list',
         request_type: :post,
-        url_params: url_params
+        url_params: url_params,
+        headers: @headers.merge('Accept' => 'application/vnd.sbcampaignresource.v4+json')
       )
     end
   end
