@@ -11,7 +11,7 @@ class Blurb
     end
 
     # https://advertising.amazon.com/API/docs/en-us/amazon-attribution-prod-3p#tag/Reports/operation/getAttributionTagsByCampaign
-    def report(start_date:, end_date:, report_type:, group_by:, metrics: nil, advertiser_ids: nil, cursor_id: nil, count: 5000) # rubocop:disable Metrics/ParameterLists, Metrics/MethodLength
+    def report(start_date:, end_date:, report_type:, group_by:, metrics: nil, advertiser_ids: nil, cursor_id: nil, count: 5000) # rubocop:disable Layout/ParameterLists, Metrics/MethodLength, Layout/LineLength
       execute_request(
         request_type: :post,
         payload: {
