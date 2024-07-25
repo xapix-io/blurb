@@ -7,7 +7,7 @@ class Blurb
   class AttributionRequest < RequestCollection
     def initialize(headers:, base_url:, bulk_api_limit: 100)
       super
-      @base_url = "#{base_url}/reports"
+      @base_url = "#{base_url}/report"
     end
 
     PERFORMANCE_REPORT_METRICS = %w[
