@@ -10,6 +10,7 @@ require "blurb/suggested_keyword_requests"
 require "blurb/history_request"
 require "blurb/invoice_request"
 require "blurb/sp_requests"
+require "blurb/attribution_request"
 
 class Blurb
   class Profile < BaseClass
@@ -162,6 +163,10 @@ class Blurb
         headers: headers_hash,
         base_url: "#{@account.api_url}/invoices"
       )
+      @attribution = AttributionRequest.new(
+        headers: headers_hash,
+        base_url: "#{@account.api_url}/attribution"
+      )
     end
 
     def campaigns(campaign_type)
@@ -194,6 +199,10 @@ class Blurb
       return @sp_reports if campaign_type == :sp
       return @sb_reports if campaign_type == :sb || campaign_type == :hsa
       return @sd_reports if campaign_type == :sd
+    end
+
+    def attribution
+      @attribution
     end
 
     def reports_v3
