@@ -49,8 +49,8 @@ class Blurb
       @profiles.find{ |p| p.profile_id == profile_id }
     end
 
-    def profile_list(profile_type: nil)
-      profile_request("/v2/profiles", { profile_type_filter: profile_type }.compact)
+    def profile_list(profile_type: nil, valid_payment_method: nil)
+      profile_request("/v2/profiles", { profile_type_filter: profile_type, valid_payment_method_filter: valid_payment_method }.compact)
     end
 
     def retrieve_profile(profile_id)
