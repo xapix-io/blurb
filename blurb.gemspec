@@ -38,6 +38,8 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "faker", "~> 2.1.0"
 
   spec.add_runtime_dependency "rest-client", ">= 2.0"
-  spec.add_runtime_dependency "oauth2", ">= 1.4.0"
+  # 2.x defaults auth_scheme to :basic_auth and reworks Response/Error, which
+  # Blurb::Account#retrieve_token is not written against yet.
+  spec.add_runtime_dependency "oauth2", "~> 1.4"
   spec.add_runtime_dependency "activesupport", ">= 7.0.0"
 end
